@@ -13,6 +13,11 @@ namespace Lab11
 
         public File(string path)
         {
+            if (!System.IO.File.Exists(path))
+            {
+                throw new FileNotFoundException($"Файл не найден: {path}");
+            }
+
             filePath = path;
             FileData();
         }
@@ -24,7 +29,15 @@ namespace Lab11
 
         public double GetSize()
         {
-            return fileData.Length;
+            if (fileData != null)
+            {
+                return fileData.Length;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
 
         public string GetPath()
@@ -39,7 +52,12 @@ namespace Lab11
 
         public void Dispose()
         {
-          
+            if (fileData != null)
+            {
+                Array.Clear(fileData, 0, fileData.Length);
+                fileData = null;
+            }
         }
     }
+
 }

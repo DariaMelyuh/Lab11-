@@ -36,12 +36,15 @@ namespace Lab11
 
         private void CreateFile()
         {
-            file = new File(filePath);
+            if (file == null)
+            {
+                file = new File(filePath);
+            }
         }
 
         public void Dispose()
         {
-          file.Dispose();
+            file.Dispose();
         }
     }
 }
