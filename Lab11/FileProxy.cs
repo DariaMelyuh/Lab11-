@@ -19,13 +19,27 @@ namespace Lab11
         public double GetSize()
         {
             CreateFile();
-            return file.GetSize();
+            if (file != null)
+            {
+                return file.GetSize();
+            }
+            else
+            {
+                return 0; 
+            }
         }
 
         public string GetPath()
         {
             CreateFile();
-            return file.GetPath();
+            if (file != null)
+            {
+                return file.GetPath();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public byte[] Show()
@@ -42,9 +56,5 @@ namespace Lab11
             }
         }
 
-        public void Dispose()
-        {
-            file.Dispose();
-        }
     }
 }

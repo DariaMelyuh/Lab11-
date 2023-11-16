@@ -49,15 +49,6 @@ namespace Lab11
         {
             return fileData;
         }
-
-        public void Dispose()
-        {
-            if (fileData != null)
-            {
-                Array.Clear(fileData, 0, fileData.Length);
-                fileData = null;
-            }
-        }
     }
 
 }

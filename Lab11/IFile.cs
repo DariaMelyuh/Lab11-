@@ -1,6 +1,6 @@
 ﻿namespace Lab11
 {
-    public interface IFile : IDisposable
+    public interface IFile
     {
         double GetSize();
         string GetPath();
