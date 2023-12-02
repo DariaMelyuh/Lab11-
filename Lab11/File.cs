@@ -6,6 +6,11 @@
 
         public File(string path)
         {
+            if (!System.IO.File.Exists(path))
+            {
+                throw new FileNotFoundException($"Файл не найден: {path}");
+            }
+
             _filePath = path;
         }
 
