@@ -1,60 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab11
+﻿namespace Lab11
 {
     public class FileProxy : IFile
     {
-        private string filePath;
-        private File file;
+        private string _filePath;
+        private File? _file;
 
-        public FileProxy(string path)
+        public FileProxy(string filePath)
         {
-            filePath = path;
+            _filePath = filePath;
+            _file = new File(filePath);
         }
 
         public double GetSize()
         {
-            CreateFile();
-            if (file != null)
-            {
-                return file.GetSize();
-            }
-            else
-            {
-                return 0; 
-            }
+           if(_file != null)
+           {
+               return _file.GetSize();
+           }
+           else
+           {
+               return new FileInfo(_filePath).Length;
+           }
         }
 
         public string GetPath()
         {
-            CreateFile();
-            if (file != null)
+            if (_file != null)
             {
-                return file.GetPath();
+                return _file.GetPath();
             }
             else
             {
-                return null;
+                return _filePath;
             }
         }
 
         public byte[] Show()
         {
-            CreateFile();
-            return file.Show();
-        }
-
-        private void CreateFile()
-        {
-            if (file == null)
+            if (_file == null)
             {
-                file = new File(filePath);
+               _file= new File(_filePath);  
             }
+            return _file.Show();    
         }
-
     }
 }

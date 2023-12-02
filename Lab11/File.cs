@@ -1,53 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab11
+﻿namespace Lab11
 {
     public class File : IFile
     {
-        private string filePath;
-        private byte[] fileData;
+        private string _filePath;
 
         public File(string path)
         {
-            if (!System.IO.File.Exists(path))
-            {
-                throw new FileNotFoundException($"Файл не найден: {path}");
-            }
-
-            filePath = path;
-            FileData();
-        }
-
-        private void FileData()
-        {
-            fileData = System.IO.File.ReadAllBytes(filePath);
+            _filePath = path;
         }
 
         public double GetSize()
         {
-            if (fileData != null)
-            {
-                return fileData.Length;
-            }
-            else
-            {
-                return 0;
-            }
-
+            var file = new FileInfo(_filePath);
+            return file.Length;
         }
 
         public string GetPath()
         {
-            return filePath;
+            return _filePath;
         }
 
         public byte[] Show()
         {
-            return fileData;
+            return System.IO.File.ReadAllBytes(_filePath);
         }
     }
 
